@@ -496,7 +496,7 @@
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    chat_id: 1700615936,
+                   chat_id: 1700615936,
                     text: telegramMessage
                 })
             }).then(response => response.json())
@@ -506,10 +506,10 @@
                 loading.style.display = 'none';
                 successMessage.style.display = 'block';
                 
-                setTimeout(() => {
-                    window.open('https://send.monobank.ua/jar/3YKPCthpJk', '_blank');
-                    closeOrderForm();
-                }, 2000);
+               setTimeout(() => {
+    window.open('https://send.monobank.ua/jar/iAotyRB15', '_blank');
+    closeOrderForm();
+}, 2000);
             }).catch(error => {
                 console.error('❌ Ошибка отправки в Telegram:', error);
                 loading.style.display = 'none';
