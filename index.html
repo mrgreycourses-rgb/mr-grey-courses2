@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mr. Grey Billionaire</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💰</text></svg>">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
@@ -478,43 +479,60 @@
                 timestamp: new Date().toLocaleString('uk-UA')
             };
             
+            // Форматируем сообщение для Telegram
             const telegramMessage = `
 🆕 НОВАЯ ЗАЯВКА
 ──────────────
 👤 ФИО: ${formData.fullName}
 📞 Телефон: ${formData.phone}
 📧 Email: ${formData.email}
-📱 Telegram: ${formData.telegram}
+📱 Telegram: ${formData.telegram || 'Не указан'}
 🎓 Курс: ${formData.course}
 💰 Цена: ${formData.price} грн
 🕐 Дата: ${formData.timestamp}
-            `;
+            `.trim();
             
-            fetch(`https://api.telegram.org/bot8318808737:AAHr5TRgDJWbzYbNxv1nMy3zhAEH5W9_XgQ/sendMessage`, {
+            // Правильный формат для Telegram API
+            const url = `https://api.telegram.org/bot8318808737:AAHr5TRgDJWbzYbNxv1nMy3zhAEH5W9_XgQ/sendMessage`;
+            
+            // Используем FormData вместо JSON для совместимости
+            const formDataToSend = new FormData();
+            formDataToSend.append('chat_id', '1700615936');
+            formDataToSend.append('text', telegramMessage);
+            formDataToSend.append('parse_mode', 'HTML');
+            
+            fetch(url, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    chat_id: 1700615936,
-                    text: telegramMessage
-                })
-            }).then(response => response.json())
+                body: formDataToSend
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
             .then(data => {
-                console.log('✅ Данные отправлены в Telegram');
+                console.log('✅ Данные отправлены в Telegram:', data);
                 
                 loading.style.display = 'none';
                 successMessage.style.display = 'block';
                 
                 setTimeout(() => {
+                    // Открываем ссылку на оплату
                     window.open('https://send.monobank.ua/jar/3YKPCthpJk', '_blank');
                     closeOrderForm();
                 }, 2000);
-            }).catch(error => {
+            })
+            .catch(error => {
                 console.error('❌ Ошибка отправки в Telegram:', error);
                 loading.style.display = 'none';
-                alert('Ошибка отправки формы. Пожалуйста, попробуйте еще раз.');
-                submitButton.disabled = false;
+                
+                // Даже если Telegram не работает, продолжаем процесс
+                successMessage.style.display = 'block';
+                setTimeout(() => {
+                    window.open('https://send.monobank.ua/jar/3YKPCthpJk', '_blank');
+                    closeOrderForm();
+                }, 2000);
             });
         });
 
