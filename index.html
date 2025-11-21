@@ -537,32 +537,32 @@
                 console.log('✅ Данные отправлены в Telegram:', data);
                 
                 loading.style.display = 'none';
-                successMessage.innerHTML = `
-                    <div style="text-align: center;">
-                        <div style="font-size: 24px; color: #2d5016; margin-bottom: 15px;">✅ Заявка #${formData.applicationNumber} принята!</div>
-                        
-                        <div style="background: white; padding: 15px; border-radius: 10px; margin: 15px 0; border-left: 4px solid #d4af37;">
-                            <strong>💳 Оплатите ${formData.price} грн:</strong><br>
-                            <a href="https://send.monobank.ua/jar/iAotyRB15" target="_blank" style="color: #d4af37; text-decoration: underline; font-weight: bold;">
-                                https://send.monobank.ua/jar/iAotyRB15
-                            </a>
-                        </div>
+               successMessage.innerHTML = `
+    <div style="text-align: center;">
+        <div style="font-size: 24px; color: #2d5016; margin-bottom: 15px;">✅ Заявка #${formData.applicationNumber} принята!</div>
+        
+        <div style="background: white; padding: 15px; border-radius: 10px; margin: 15px 0; border-left: 4px solid #d4af37;">
+            <strong>💳 Оплатите ${formData.price} грн:</strong><br>
+            <a href="https://send.monobank.ua/jar/iAotyRB15" target="_blank" style="color: #d4af37; text-decoration: underline; font-weight: bold;">
+                https://send.monobank.ua/jar/iAotyRB15
+            </a>
+        </div>
 
-                        <div style="background: #fff8e1; padding: 15px; border-radius: 10px; margin: 15px 0; text-align: left;">
-                            <strong>📨 После оплаты:</strong><br><br>
-                            1. Сделайте скриншот оплаты<br>
-                            2. Напишите боту: <strong>@MrGreyCoursesBot</strong><br>
-                            3. Отправьте скриншот и укажите ваше ФИО<br><br>
-                            
-                            <strong>⏱ Доступ к курсу откроется в течение 15 минут после проверки оплаты</strong>
-                        </div>
+        <div style="background: #fff8e1; padding: 15px; border-radius: 10px; margin: 15px 0; text-align: left;">
+            <strong>📨 После оплаты:</strong><br><br>
+            1. Сделайте квитанцию об оплате<br>
+            2. Напишите боту: <strong>@MrGreyCoursesBot</strong><br>
+            3. Отправьте квитанцию, ФИО и ваш никнейм в Telegram<br><br>
+            
+            <strong>🔐 После успешной проверки вас добавят в Telegram-канал курса</strong>
+        </div>
 
-                        <div style="color: #666; font-size: 14px; margin-top: 10px;">
-                            Номер вашей заявки: #${formData.applicationNumber}<br>
-                            Сохраните его для связи
-                        </div>
-                    </div>
-                `;
+        <div style="color: #666; font-size: 14px; margin-top: 10px;">
+            Номер вашей заявки: #${formData.applicationNumber}<br>
+            Сохраните его для связи
+        </div>
+    </div>
+`;
                 successMessage.style.display = 'block';
                 
                 setTimeout(() => {
