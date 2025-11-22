@@ -282,6 +282,15 @@
             text-align: center;
         }
         
+        .instructions {
+            background: #fff8e1;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: left;
+            border-left: 4px solid #d4af37;
+        }
+        
         @media (max-width: 1200px) {
             .courses-grid {
                 grid-template-columns: 1fr;
@@ -421,13 +430,8 @@
                     <div id="courseInfo" style="padding: 15px; background: #f8f9fa; border-radius: 10px; font-weight: 600;"></div>
                 </div>
                 
-                <!-- ЗЕЛЕНАЯ КНОПКА КУПИТЬ -->
-                <button type="submit" class="submit-button" id="submitButton">
-                    Купить
-                </button>
-                
-                <!-- ИНСТРУКЦИИ ПОСЛЕ КНОПКИ -->
-                <div style="background: #fff8e1; padding: 20px; border-radius: 10px; margin: 20px 0; text-align: left;">
+                <!-- ИНСТРУКЦИИ ПЕРЕД КНОПКОЙ -->
+                <div class="instructions">
                     <strong>📨 После оплаты:</strong><br><br>
                     1. Сделайте квитанцию об оплате<br>
                     <em>(не скриншот!)</em><br><br>
@@ -436,6 +440,11 @@
                     
                     <strong>🔐 После проверки Вас добавят в Telegram-канал курса.</strong>
                 </div>
+                
+                <!-- ЗЕЛЕНАЯ КНОПКА КУПИТЬ -->
+                <button type="submit" class="submit-button" id="submitButton">
+                    Купить
+                </button>
                 
                 <div class="loading" id="loading">
                     Отправляем заявку...
@@ -593,8 +602,8 @@
             }
         });
 
-        // Mr. Grey Courses v2.2 - автоматическое обновление кэша
-        const version = "2.2";
+        // Mr. Grey Courses v2.3 - автоматическое обновление кэша
+        const version = "2.3";
         console.log(`🚀 Mr. Grey Courses v${version}`);
         localStorage.setItem('site_version', version);
     </script>
